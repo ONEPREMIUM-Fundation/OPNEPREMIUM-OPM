@@ -1,4 +1,4 @@
-# ![OPM Logo](https://onepremium.de/assets/opm-logo) OnePremium (OPM)
+# ![OPM Logo](https://onepremium.de/images/opm-logo-200.png) OnePremium (OPM)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Last Update](https://img.shields.io/github/last-commit/redbox-xk/OPNEPREMIUM-OPM?label=auto-updated)](https://github.com/redbox-xk/OPNEPREMIUM-OPM)
