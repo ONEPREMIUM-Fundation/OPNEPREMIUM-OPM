@@ -83,7 +83,7 @@ python3 opm-auto.py
 	•	CoinMarketCap: OPM Listing￼
 	•	Decimals: 18
 	•	Chain: Ethereum Mainnet
-	•	Logo: 
+	•	Logo: https://onepremium.de/images/opm-logo-200.png
 
 	•	Verified: ✅ SHA256 metadata included
 
