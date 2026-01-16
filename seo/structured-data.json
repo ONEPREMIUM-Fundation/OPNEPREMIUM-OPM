@@ -1,0 +1,10 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Cryptocurrency",
+  "name": "OnePremium",
+  "tickerSymbol": "OPM",
+  "blockchainPlatform": "Ethereum",
+  "contractAddress": "0xe430b07f7b168e77b07b29482dbf89eafa53f484",
+  "url": "https://onepremium.de",
+  "dateModified": "2026-01-16T21:30:33.825101"
+}
