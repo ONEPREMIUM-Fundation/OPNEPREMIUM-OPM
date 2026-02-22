@@ -5,6 +5,10 @@ on:
     branches: [main, develop]
   pull_request:
 
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
 
   # ========================
@@ -13,6 +17,7 @@ jobs:
   python:
     runs-on: ubuntu-latest
     if: hashFiles('**/*.py') != ''
+
     strategy:
       matrix:
         python-version: ["3.10"]
@@ -20,9 +25,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Setup Python
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          cache: "pip"
 
       - name: Install dependencies
         run: |
@@ -32,7 +39,12 @@ jobs:
 
       - name: Run pylint
         run: |
-          pylint $(git ls-files '*.py') || true
+          FILES=$(git ls-files '*.py')
+          if [ -n "$FILES" ]; then
+            pylint $FILES
+          else
+            echo "No Python files found."
+          fi
 
   # ========================
   # 2️⃣ NODE / FRONTEND
@@ -44,13 +56,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-node@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: "npm"
 
       - name: Install dependencies
         run: npm ci
+
+      - name: Lint (if exists)
+        run: |
+          if npm run | grep -q "lint"; then
+            npm run lint
+          else
+            echo "No lint script found."
+          fi
 
       - name: Build frontend
         run: npm run build
@@ -69,6 +90,9 @@ jobs:
         run: |
           curl -L https://foundry.paradigm.xyz | bash
           ~/.foundry/bin/foundryup
+
+      - name: Add Foundry to PATH
+        run: echo "$HOME/.foundry/bin" >> $GITHUB_PATH
 
       - name: Build contracts
         run: forge build
