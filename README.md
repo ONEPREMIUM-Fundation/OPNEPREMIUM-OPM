@@ -1,81 +1,82 @@
-# Trust Wallet Assets Info
+# OnePremium (OPM) Crypto Asset Repository
 
-![Check](https://github.com/trustwallet/assets/workflows/Check/badge.svg)
+![OnePremium Logo](https://github.com/ONEPREMIUM-Fundation/onepremium-crypto-asset/blob/main/opm-logo.svg)
 
-## Overview
+This repository consolidates all verified and production-ready data for **OnePremium (OPM)**, an Ethereum-based ERC-20 utility token. It is designed to serve as the authoritative source for token metadata, on-chain references, market data, and integration assets across decentralized exchanges (DEXs), wallets, and analytics platforms.
 
-Trust Wallet token repository is a comprehensive, up-to-date collection of information about several thousands (!) of crypto tokens.
+---
 
-[Trust Wallet](https://trustwallet.com) uses token logos from this source, alongside a number of other projects.
+## Token Overview
 
-The repository contains token info from several blockchains, info on dApps, staking validators, etc.
-For every token a logo and optional additional information is available (such data is not available on-chain).
+- **Token Name:** OnePremium (OPM)  
+- **Contract Address:** `0xE430b07F7B168E77B07b29482DbF89EafA53f484`  
+- **Blockchain Network:** Ethereum Mainnet  
+- **Token Standard:** ERC-20  
+- **Decimals:** 18  
+- **Official Website:** [onepremium.de](https://onepremium.de)  
 
-Such a large collection can be maintained only through a community effort, so _feel free to add your token_.
+---
 
-<center><img src='https://trustwallet.com/assets/images/media/assets/horizontal_blue.png' height="200"></center>
+## Market Data (Verified)
 
-## How to add token
+- **Current Price (USD):** $273.20  
+- **Current Price (USDT):** 274.07 USDT  
+- **Price Change (24h):** +8.19%  
+- **OPM per USDT:** 0.003649 OPM  
+- **Market Capitalization:** $2,740,000 (approx.)  
+- **Liquidity Pool:** Uniswap V3 (USDT/OPM)  
+  - Pool Address: `0x1ddb29e16c6b0cc23fea7fd42cf3f6bd368b30c0`  
+  - Fee Tier: 0.01%  
+  - Liquidity USD: $2.74M  
 
-Please note that __brand new tokens are not accepted__,
-the projects have to be sound, with information available, and __non-minimal circulation__
-(for limit details see <https://developer.trustwallet.com/listing-new-assets/requirements>).
+---
 
-### Assets App
+## Verified Social & Community Channels
 
-The [Assets web app](https://assets.trustwallet.com) can be used for most new token additions (Github account is needed).
+- **Telegram:** [https://t.me/onepremiumcoin](https://t.me/onepremiumcoin)  
+- **Medium:** [https://medium.com/@kontakt_32032](https://medium.com/@kontakt_32032)  
+- **Website:** [https://onepremium.de](https://onepremium.de)  
 
-### Quick starter
+> Other official channels (Twitter, Discord, GitHub) are currently unverified and not included to maintain integrity.
 
-Details of the repository structure and contribution guidelines are listed on the
-[Developers site](https://developer.trustwallet.com/listing-new-assets/new-asset).
-Here is a quick starter summary for the most common use case.
+---
 
+## On-Chain References
 
-## Documentation
+- **Etherscan Contract:** [View on Etherscan](https://etherscan.io/token/0xE430b07F7B168E77B07b29482DbF89EafA53f484)  
+- **Uniswap Pool Info:** [GeckoTerminal](https://www.geckoterminal.com/eth/pools/0x1ddb29e16c6b0cc23fea7fd42cf3f6bd368b30c0)  
+- **CoinMarketCap DEX Listing:** [CMC Dex](https://dex.coinmarketcap.com/token/ethereum/0xe430b07f7b168e77b07b29482dbf89eafa53f484/)  
 
-For details, see the [Developers site](https://developer.trustwallet.com):
+---
 
-- [Contribution guidelines](https://developer.trustwallet.com/listing-new-assets/repository_details)
+## Repository Contents
 
-- [FAQ](https://developer.trustwallet.com/listing-new-assets/faq)
+This repository includes all verified files required for professional integrations:
 
-## Scripts
+- `logo.png` — Official token logo (256x256 PNG)  
+- `tokenlist.json` — ERC-20 metadata for DEXs and wallet support  
+- `tokenomics.json` — Token metrics including USDT/OPM, price, supply, and liquidity  
+- `social-links.json` — Verified community channels  
+- `sources.json` — Verified external references and explorers  
+- `README.md` — High-level documentation  
+- `CHANGELOG.md` — Version history  
+- `LICENSE` — MIT License  
+- Optional templates: `CMC_submission.md`, `Uniswap_PR_template.md`  
 
-There are several scripts available for maintainers:
+---
 
-- `make check` -- Execute validation checks; also used in continuous integration.
-- `make fix` -- Perform automatic fixes where possible
-- `make update-auto` -- Run automatic updates from external sources, executed regularly (GitHub action)
-- `make add-token asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Create `info.json` file as asset template.
-- `make add-tokenlist asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Adds a token to tokenlist.json.
-- `make add-tokenlist-extended asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Adds a token to tokenlist-extended.json.
+## Usage Instructions
 
-## On Checks
+1. Use **`logo.png`** as the official image reference across all integrations.  
+2. Reference **`tokenlist.json`** for DEX and wallet listings.  
+3. Confirm live tokenomics via **`tokenomics.json`** for pricing, market cap, and liquidity.  
+4. Utilize **`sources.json`** and **`social-links.json`** for verifiable project communications.  
+5. Submit pull requests to Uniswap or other DEXs using the provided templates to maintain verified standards.  
 
-This repo contains a set of scripts for verification of all the information. Implemented as Golang scripts, available through `make check`, and executed in CI build; checks the whole repo.
-There are similar check logic implemented:
+---
 
-- in assets-management app; for checking changed token files in PRs, or when creating a PR.  Checks diffs, can be run from browser environment.
-- in merge-fee-bot, which runs as a GitHub app shows result in PR comment. Executes in a non-browser environment.
+## Notes
 
-## Trading pair maintenance
-
-Info on supported trading pairs are stored in `tokenlist.json` files.
-Trading pairs can be updated --
-from Uniswap/Ethereum and PancakeSwap/Smartchain -- using update script (and checking in changes).
-Minimal limit values for trading pair inclusion are set in the [config file](https://github.com/trustwallet/assets/blob/master/.github/assets.config.yaml).
-There are also options for force-include and force-exclude in the config.
-
-## Disclaimer
-
-Trust Wallet team allows anyone to submit new assets to this repository. However, this does not mean that we are in direct partnership with all of the projects.
-
-Trust Wallet team will reject projects that are deemed as scam or fraudulent after careful review.
-Trust Wallet team reserves the right to change the terms of asset submissions at any time due to changing market conditions, risk of fraud, or any other factors we deem relevant.
-
-Additionally, spam-like behavior, including but not limited to mass distribution of tokens to random addresses will result in the asset being flagged as spam and possible removal from the repository.
-
-## License
-
-The scripts and documentation in this project are released under the [MIT License](LICENSE)
+- All prices and liquidity metrics are **live and verified** via CoinMarketCap DEX and GeckoTerminal.  
+- This repository is designed for **high-level integration** into professional DEXs, wallets, and crypto aggregator platforms.  
+- Fields related to ICO, IEO, public sale allocations, or vesting are marked `"NA
