@@ -1,116 +1,81 @@
-# ![OPM Logo](https://onepremium.de/images/opm-logo-200.png) OnePremium (OPM)
+# Trust Wallet Assets Info
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Last Update](https://img.shields.io/github/last-commit/redbox-xk/OPNEPREMIUM-OPM?label=auto-updated)](https://github.com/redbox-xk/OPNEPREMIUM-OPM)
+![Check](https://github.com/trustwallet/assets/workflows/Check/badge.svg)
 
-**OnePremium (OPM)** represents the pinnacle of automated token management and cross-platform integration. This repository is a **high-fidelity, intelligence-driven hub** for all token operations: metadata, smart contracts, DEX and wallet integrations, governance modules, and SEO-optimized structured data.  
+## Overview
 
-Every aspect is **automatically updated and verified**, ensuring maximal integrity, compliance, and live operational intelligence.
+Trust Wallet token repository is a comprehensive, up-to-date collection of information about several thousands (!) of crypto tokens.
 
----
+[Trust Wallet](https://trustwallet.com) uses token logos from this source, alongside a number of other projects.
 
-## 🔬 Repository Architecture
+The repository contains token info from several blockchains, info on dApps, staking validators, etc.
+For every token a logo and optional additional information is available (such data is not available on-chain).
 
-OPNEPREMIUM-OPM/
-├── contracts/       # Verified ERC20 & governance contracts
-├── metadata/        # Token metrics, holders, supply, gas, multi-platform JSONs
-├── dex/             # Uniswap, SushiSwap, automated DEX integration
-├── wallets/         # TrustWallet, MetaMask, Rainbow, and wallet-ready JSON
-├── dashboard/       # Web dashboard for real-time analytics
-├── dao/             # Governance & DAO contract placeholders
-├── seo/             # Structured data for search engines & token aggregators
+Such a large collection can be maintained only through a community effort, so _feel free to add your token_.
 
-**Design Principle:** Every file is optimized for **automation, verifiability, and cross-platform interoperability**.
+<center><img src='https://trustwallet.com/assets/images/media/assets/horizontal_blue.png' height="200"></center>
 
----
+## How to add token
 
-## 🚀 Intelligent Automation Features
+Please note that __brand new tokens are not accepted__,
+the projects have to be sound, with information available, and __non-minimal circulation__
+(for limit details see <https://developer.trustwallet.com/listing-new-assets/requirements>).
 
-- **Self-Updating Engine:** Automatically fetches live blockchain data, recalculates metrics, and updates all JSON metadata.  
-- **DEX-Ready Deployment:** Produces verified token lists for Uniswap and other Ethereum-based DEXes.  
-- **Wallet Integration:** Generates validated TrustWallet, MetaMask, and Rainbow JSON for instant token recognition.  
-- **Dashboard Intelligence:** Real-time display of holders, supply, gas prices, and verification status.  
-- **Governance-Ready:** DAO & governance smart contracts included as templates for extensible ecosystem control.  
-- **Structured Verification:** SHA256 and multi-layer validation ensure **metadata integrity and authenticity**.  
-- **SEO Optimization:** JSON-LD structured data for indexing by token search engines, aggregators, and wallets.  
+### Assets App
 
----
+The [Assets web app](https://assets.trustwallet.com) can be used for most new token additions (Github account is needed).
 
-## ⚡ Live Data & Interaction
+### Quick starter
 
-- **Dashboard:** `dashboard/index.html`  
-  - Total holders & distribution  
-  - Circulating & total supply  
-  - Gas prices  
-  - Automated verification badges
+Details of the repository structure and contribution guidelines are listed on the
+[Developers site](https://developer.trustwallet.com/listing-new-assets/new-asset).
+Here is a quick starter summary for the most common use case.
 
-- **Metadata:** `metadata/`  
-  - Holder lists, supply metrics, CoinMarketCap & CoinGecko ready JSONs  
-  - Token verification SHA256 hashes  
 
-- **DEX Files:** `dex/`  
-  - Uniswap & SushiSwap integration-ready lists  
-  - Auto-updates ensure live compatibility  
+## Documentation
 
-- **Wallet Files:** `wallets/`  
-  - TrustWallet, MetaMask, Rainbow JSONs for immediate token recognition  
+For details, see the [Developers site](https://developer.trustwallet.com):
 
----
+- [Contribution guidelines](https://developer.trustwallet.com/listing-new-assets/repository_details)
 
-## 🛠 How to Deploy / Update
+- [FAQ](https://developer.trustwallet.com/listing-new-assets/faq)
 
-1. **Clone repository:**
-```bash
-git clone https://github.com/redbox-xk/OPNEPREMIUM-OPM.git
-cd OPNEPREMIUM-OPM
+## Scripts
 
-	2.	Run automation script (iSH/Alpine compatible):
+There are several scripts available for maintainers:
 
-python3 opm-auto.py
+- `make check` -- Execute validation checks; also used in continuous integration.
+- `make fix` -- Perform automatic fixes where possible
+- `make update-auto` -- Run automatic updates from external sources, executed regularly (GitHub action)
+- `make add-token asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Create `info.json` file as asset template.
+- `make add-tokenlist asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Adds a token to tokenlist.json.
+- `make add-tokenlist-extended asset_id=c60_t0x4Fabb145d64652a948d72533023f6E7A623C7C53` -- Adds a token to tokenlist-extended.json.
 
-	3.	Script workflow:
+## On Checks
 
-	•	Fetches real-time token data from Etherscan
-	•	Generates all metadata for wallets, DEX, and dashboards
-	•	Updates governance & DAO placeholders
-	•	Pushes verified updates to the One-Premium branch automatically
+This repo contains a set of scripts for verification of all the information. Implemented as Golang scripts, available through `make check`, and executed in CI build; checks the whole repo.
+There are similar check logic implemented:
 
-⸻
+- in assets-management app; for checking changed token files in PRs, or when creating a PR.  Checks diffs, can be run from browser environment.
+- in merge-fee-bot, which runs as a GitHub app shows result in PR comment. Executes in a non-browser environment.
 
-🔗 Token Reference
-	•	Contract Address: 0xe430b07f7b168e77b07b29482dbf89eafa53f484￼
-	•	Uniswap: OPM Token￼
-	•	CoinMarketCap: OPM Listing￼
-	•	Decimals: 18
-	•	Chain: Ethereum Mainnet
-	•	Logo: https://onepremium.de/images/opm-logo-200.png
+## Trading pair maintenance
 
-	•	Verified: ✅ SHA256 metadata included
+Info on supported trading pairs are stored in `tokenlist.json` files.
+Trading pairs can be updated --
+from Uniswap/Ethereum and PancakeSwap/Smartchain -- using update script (and checking in changes).
+Minimal limit values for trading pair inclusion are set in the [config file](https://github.com/trustwallet/assets/blob/master/.github/assets.config.yaml).
+There are also options for force-include and force-exclude in the config.
 
-⸻
+## Disclaimer
 
-🧠 Contribution & Governance
+Trust Wallet team allows anyone to submit new assets to this repository. However, this does not mean that we are in direct partnership with all of the projects.
 
-This repository is primarily automated, but contributions are welcome:
-	1.	Fork the repo
-	2.	Create a feature branch
-	3.	Update dashboard, metadata, or contracts
-	4.	Submit a Pull Request
-	5.	Automated verification engine will validate and merge if all integrity checks pass
+Trust Wallet team will reject projects that are deemed as scam or fraudulent after careful review.
+Trust Wallet team reserves the right to change the terms of asset submissions at any time due to changing market conditions, risk of fraud, or any other factors we deem relevant.
 
-⸻
+Additionally, spam-like behavior, including but not limited to mass distribution of tokens to random addresses will result in the asset being flagged as spam and possible removal from the repository.
 
-⚖ License
+## License
 
-MIT License – See LICENSE￼
-
-⸻
-
-⚠ Disclaimer
-	•	OPM is a utility token: no equity, no ownership.
-	•	All participation is at your own risk.
-	•	Automated scripts ensure live updates and integrity, but always verify on-chain data independently.
-
-⸻
-
-Maintained by the OPNEPREMIUM-OPM intelligent automation engine.
+The scripts and documentation in this project are released under the [MIT License](LICENSE)
